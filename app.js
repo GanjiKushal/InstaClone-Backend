@@ -28,8 +28,8 @@ app.use(express.urlencoded({limit: '25mb'}));
 app.use(cors())
 
 app.get("/",async (req,res)=>{
-    const b=await data.find()
-    res.send(b.reverse())
+    const b=await data.find().sort({_id:-1})
+    res.status(200).json(b)
 })
 app.post("/alldata", async (req,res)=>{
     // console.log(req.file.filename)
@@ -49,7 +49,7 @@ app.post("/alldata", async (req,res)=>{
     })
     console.log(a)
     // res.send(a)
-    res.json({
+    res.status(200).json({
         message:"sucess"
     })
     
